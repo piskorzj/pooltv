@@ -1,0 +1,10 @@
+[Unit]
+Description=Sender service
+After=sys-subsystem-net-devices-eth0.device
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c 'raspivid -b 25000000 -o - -t 0 -fps 30 -g 5 -pf high -ih -qp 28 -fl | sender'
+Restart=always
+RestartSec=1
