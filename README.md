@@ -31,3 +31,7 @@ raspivid -b 25000000 -o - -t 0 -fps 30 -g 5 -pf high -ih -qp 28 -fl | gst-launch
 # To receive
 
 ./gst-launch-1.0 rtpbin rtp-profile=avpf name=rtpbin udpsrc multicast-iface=enx000cf6bee4db port=4000 address=224.100.100.100 caps="application/x-rtp,media=video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" ! rtpbin.recv_rtp_sink_0 rtpbin. ! rtph264depay ! h264parse ! vaapih264dec ! vaapisink udpsrc port=5001 address=224.100.100.100 multicast-iface=enx000cf6bee4db ! rtpbin.recv_rtcp_sink_0 rtpbin.send_rtcp_src_0 ! udpsink host=224.100.100.100 port=5002 multicast-iface=enx000cf6bee4db sync=false async=false
+
+
+# How to install
+sudo dd if=output/images/sdcard.img of=/dev/mmcblk0 bs=4M status=progress
