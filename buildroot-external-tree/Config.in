@@ -1,0 +1,2 @@
+source "$BR2_EXTERNAL_PTV_PATH/package/ptv_fmt/Config.in"
+source "$BR2_EXTERNAL_PTV_PATH/package/sender/Config.in"
